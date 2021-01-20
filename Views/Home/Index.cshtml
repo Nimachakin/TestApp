@@ -1,0 +1,53 @@
+﻿@model IEnumerable<VirtualServerInfo>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+</br>
+<table border="1">
+    <caption>Таблица серверов</caption>
+    <tr>
+        <th>CurrentDateTime:</th>
+        <th id="currentDateTime"></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>TotalUsageTime:</th>
+        <th id="totalUsageTime">00:00:00</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>VirtualServerId</th>
+        <th>CreateDateTime</th>
+        <th>RemoveDateTime</th>
+        <th>SelectedForRemove</th>
+    </tr>
+    @foreach (var item in @Model)
+    {
+        <tr data-id="@item.VirtualServerId">
+            <td>@item.VirtualServerId</td>
+            <td>@item.CreateDateTime</td>
+            <td class="removeDateField">@item.RemoveDateTime</td>
+            <td>
+                @if(!item.SelectedForRemove)
+                {
+                    <input type="checkbox" class="form-control" />
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="form-group">
+    <button id="addServerBtn" class="btn btn-success">Add</button>
+    <button id="removeServerBtn" class="btn btn-danger">Remove</button>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src="~/js/VirtualServers/index.js"></script>
+}
+
+
